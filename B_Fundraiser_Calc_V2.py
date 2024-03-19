@@ -64,6 +64,7 @@ def get_expenses(var_fixed):
 
     # Calculate cost of each component
     expense_frame['Cost'] = expense_frame['Quantity'] * expense_frame['Price']
+    expense_cost = expense_frame['Cost']
 
     # Find sub-total
     expense_sub = expense_frame['Cost'].sum()
@@ -72,25 +73,23 @@ def get_expenses(var_fixed):
     for item in add_dollars:
         expense_frame[item] = expense_frame[item].apply(cur)
 
+    expense_frame_list = {
+        "Item": item_list,
+        "Cost": expense_cost}
+
+    expense_fixed_frame = pd.DataFrame(expense_frame_list)
+    expense_fixed_frame = expense_fixed_frame.set_index('Item')
+
     # just for nice formatting
     print()
     print("--------------------")
     print()
 
-    return [expense_frame, expense_sub]
+    if var_fixed == "variable":
+        return [expense_frame, expense_sub]
+    else:
+        return [expense_fixed_frame, expense_sub]
 
-
-# preset variables
-# sets up dictionaries and lists
-item_list = []
-quantity_list = []
-price_list = []
-
-variable_dict = {
-    "Item": item_list,
-    "Quantity": quantity_list,
-    "Price": price_list
-}
 
 # mian routine
 
@@ -100,57 +99,27 @@ print()
 
 product_name = nb("Product Name: ")
 
-# just for nice formatting
-print()
-print("--------------------")
-print()
+# get variable costs
+variable_expenses = get_expenses("variable")
+variable_frame = variable_expenses[0]
+variable_sub = variable_expenses[1]
 
-# loop for component, quantity and price
-item_name = ""
+# get fixed costs
+fixed_expenses = get_expenses("fixed")
+fixed_frame = fixed_expenses[0]
+fixed_sub = fixed_expenses[1]
 
-while item_name.lower() != "xxx":
-
-    # get name
-    item_name = nb("Item Name: ")
-    if item_name.lower() == "xxx":
-        break
-
-    # get quantity
-    quantity_num = ic("Item Quantity: ", low=1)
-
-    # get price
-    price_num = fc("Item Price: ", low=1)
-
-    # add item, quantity and price to list
-    item_list.append(item_name)
-    quantity_list.append(quantity_num)
-    price_list.append(price_num)
-
-    # just for nice formatting
-    print("----------")
-
-# just for nice formatting
-print()
-print("--------------------")
-print()
-
-variable_frame = pd.DataFrame(variable_dict)
-variable_frame = variable_frame.set_index('Item')
-
-
-
-# Calculate cost of each component
-variable_frame['Cost'] = variable_frame['Quantity'] * variable_frame['Price']
-
-# Find sub-total
-variable_sub = variable_frame['Cost'].sum()
-
-add_dollars = ['Price', 'Cost']
-for item in add_dollars:
-    variable_frame[item] = variable_frame[item].apply(cur)
 
 # **** Printing Area ****
 
+print("*_____ Variable Costs ____*")
+print()
 print(variable_frame)
 print()
 print(f"Variable Costs: {cur(variable_sub)}")
+print()
+print("*____ Fixed Costs ____*")
+print()
+print(fixed_frame)
+print()
+print(f"Fixed Costs: {cur(fixed_sub)}")
