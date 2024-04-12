@@ -1,0 +1,28 @@
+Product: n
+
+Variable Costs
+      Quantity  Price    Cost
+Item                         
+2            2  $2.00   $4.00
+3            3  $3.00   $9.00
+4            4  $4.00  $16.00
+5            5  $5.00  $25.00
+Total: $54.00
+
+Fixed Costs
+      Cost
+Item      
+2      2.0
+3      3.0
+4      4.0
+5      5.0
+Total: $14.00
+
+Grand Total: $68.00
+
+Profit & Sales Targets
+Profit Target: $34.00
+Total Sales Needed: $102.00
+Selling
+Minimum Sell: $34.00
+Recommended Sell: $4.00

@@ -1,0 +1,29 @@
+Product: hi
+
+Variable Costs
+      Quantity  Price    Cost
+Item                         
+A            2  $2.00   $4.00
+B            3  $3.00   $9.00
+C            4  $4.00  $16.00
+D            5  $5.00  $25.00
+Total: $54.00
+
+Fixed Costs
+      Cost
+Item      
+A      2.0
+B      3.0
+C      4.0
+D      5.0
+Total: $14.00
+
+Grand Total: $68.00
+
+Profit & Sales Targets
+Profit Target: $23.80
+Total Sales Needed: $91.80
+
+Selling
+Minimum Sell: $2.38
+Recommended Sell: $4.00
